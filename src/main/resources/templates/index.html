@@ -2,15 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
-        <title>Otsikko</title>
+        <title>Reseptiarkisto</title>
         <meta charset="utf-8" />
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
+        <h1>Tervetuloa reseptikirjastoon!</h1>
 
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
+        <h3>Valmiit reseptit </h3>   
+        <ul>
+            <li th:each="resepti: ${reseptit}">
 
-        <p><a href="/opiskelijat">Tästä opiskelijalistaukseen.</a></p>
+                <form th:action="@{~/resepti/{id}(id=${resepti.id})}" method="post">
+                    <a th:href="@{~/reseptit/{id}(id=${resepti.id})}">
+                        <span th:text="${resepti.nimi}">resepti</span>
+                    </a>
+                    &emsp;
+                    <input type="submit" value="Poista"/>
+                </form>
+            </li>
+        </ul>
+        <br/>
+        <a href="/reseptit">Lis&auml;&auml; uusi resepti</a><br/>
+        <a href="/ainesosat">Tarkistele ja lis&auml;&auml; ainesosia</a>
+
+
     </body>
 </html>
