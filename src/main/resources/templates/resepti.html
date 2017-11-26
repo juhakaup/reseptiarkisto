@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+        <title>Resepti</title>
+        <meta charset="utf-8" />
+    </head>
+    
+    <body>
+        <h1><span th:text="${resepti.nimi}">resepti</span></h1>
+        
+        <h4>Ainesosat:</h4>        
+        <ul>
+            <li th:each="resAinesosa: ${reseptiAinesosa}">               
+                <div th:each="ainesosa: ${ainesosat}">
+                    <span th:if="${resAinesosa.ainesosaId}==${ainesosa.id}" 
+                          th:text="${ainesosa.nimi} + ', ' + ${resAinesosa.maara} + ', ' + ${resAinesosa.ohje}"                       
+                    ></span>
+                    
+                </div>
+            </li>
+        </ul>
+        
+        <h4>Valmistusohje:</h4>
+         <p th:text="${resepti.ohje}">resepti</p>
+         
+        <a href="/">Takaisin reseptilistaukseen</a>
+    </body>
+</html>

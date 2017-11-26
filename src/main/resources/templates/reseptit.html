@@ -1,0 +1,72 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Ainesosat</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+        <h1> Reseptit </h1>
+
+        <ul>
+            <li th:each="resepti: ${reseptit}">
+                <a th:href="@{~/reseptit/{id}(id=${resepti.id})}">
+                    <span th:text="${resepti.nimi}"></span>
+                </a>
+            </li>
+        </ul>
+
+        <h4>Lis&auml;&auml; uusi</h4>
+
+        <form th:action="@{~/resepti}" method="post">
+            Reseptin nimi:<br/>
+            <input type="text" name="resepti"/><br/>
+            <input type="submit" value="Lis&auml;&auml;"/>
+        </form>
+
+        <h4>Lis&auml;&auml; ainesosia</h4>
+
+        <form th:action="@{~/reseptit}" method="post">
+            Reseptin nimi:<br/>
+            <select name="reseptit">
+                <option th:each="resepti: ${reseptit}" th:value="${resepti.id}" th:text="${resepti.nimi}">
+                    resepti
+                </option>
+            </select>
+            <br/>
+            Lis&auml;tt&auml;v&auml; ainesosa<br/>
+            <select name="ainesosa">
+                <option th:each="ainesosa: ${ainesosat}" th:value="${ainesosa.id}" th:text="${ainesosa.nimi}">
+                    ainesosa
+                </option>
+            </select>
+            <br/>
+            J&auml;rjestys<br/>
+            <input type="text" name="jarjestys"/><br/>
+            M&auml;&auml;r&auml;<br/>
+            <input type="text" name="maara"/><br/>
+            Ohje<br/>
+            <input type="text" name="ohje"/><br/>
+            <input type="submit" value="Lis&auml;&auml;"/>
+        </form>
+        
+        <h4>Lis&auml;&auml; valmistusohje</h4>
+  
+        <textarea rows="4" cols="50" name="resepti" form="usrform">Kirjoita resepti t&auml;h&auml;n.</textarea>
+        
+        <form action="/valmistusohje" id="usrform">
+            Reseptin nimi:<br/>
+            <select name="reseptit">
+                <option th:each="resepti: ${reseptit}" th:value="${resepti.id}" th:text="${resepti.nimi}">
+                    resepti
+                </option>
+            </select><br/>
+            <input type="submit" value="Lis&auml;&auml;"/>
+        </form>
+
+        <br/>
+        <a href="/">Takaisin reseptilistaukseen</a>
+
+    </body>
+</html>
