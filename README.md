@@ -1,4 +1,5 @@
-# tikape-runko
+# Tikape harjoitustyö
+# Reseptiarkisto
 
-Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
+Tietokantojen perusteet -kurssilla tehtävä harjoitustyö
 
